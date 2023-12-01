@@ -1,0 +1,15 @@
+trigger:
+  branches:
+    include:
+      - main
+
+steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'docker-registry-cr-aush-ops-prd'
+      repository: 'aush-idp'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: |
+        latest
+        $(Build.BuildNumber)
